@@ -155,7 +155,7 @@ namespace Lab_1
         private void deleteCurrentRowButton_Click(object sender, EventArgs e)
         {
             int k = dataGridView1.CurrentCell.RowIndex;
-            string query = $"delete from employees where ID = {Convert.ToInt32(dataGridView1.Rows[k].Cells[0].Value)}";
+            string query = $"delete from employees where ID = @ID";
 
             if (dataGridView1.RowCount == 0)
             {
@@ -167,9 +167,12 @@ namespace Lab_1
             {
                 using (connection = new MySqlConnection(connect))
                 {
-                    connection.Open();
                     cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(dataGridView1.Rows[k].Cells[0].Value)));
+
+                    connection.Open();
                     cmd.ExecuteNonQuery();
+
                     dataAdapter.Fill(dataSet);
                     dataSet.Clear();
                     dataAdapter.Fill(dataSet.Tables[0]);

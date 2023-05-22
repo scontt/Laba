@@ -43,14 +43,6 @@
             this.dataColumn6 = new System.Data.DataColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn8 = new System.Data.DataColumn();
-            this.dataTable2 = new System.Data.DataTable();
-            this.dataColumn9 = new System.Data.DataColumn();
-            this.dataColumn10 = new System.Data.DataColumn();
-            this.dataColumn11 = new System.Data.DataColumn();
-            this.dataColumn12 = new System.Data.DataColumn();
-            this.dataColumn13 = new System.Data.DataColumn();
-            this.dataColumn14 = new System.Data.DataColumn();
-            this.dataColumn15 = new System.Data.DataColumn();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -62,17 +54,9 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.connection = new MySql.Data.MySqlClient.MySqlConnection();
-            this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.dataAdapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.animalNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.animalTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxWeightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.redDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.avgLifeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.flyingAbilitiesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
@@ -106,14 +90,34 @@
             this.changeCurrentRowButton = new System.Windows.Forms.Button();
             this.relation1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openEmpButton = new System.Windows.Forms.Button();
+            this.redDateFilter = new System.Windows.Forms.Button();
+            this.empCountFilter = new System.Windows.Forms.Button();
+            this.empSalaryFilter = new System.Windows.Forms.Button();
+            this.dataTable2 = new System.Data.DataTable();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
+            this.dataColumn12 = new System.Data.DataColumn();
+            this.dataColumn13 = new System.Data.DataColumn();
+            this.dataColumn14 = new System.Data.DataColumn();
+            this.dataColumn15 = new System.Data.DataColumn();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.cancelQueryFilterButton = new System.Windows.Forms.Button();
+            this.dataTable3 = new System.Data.DataTable();
+            this.dataColumn17 = new System.Data.DataColumn();
+            this.dataColumn18 = new System.Data.DataColumn();
+            this.dataColumn19 = new System.Data.DataColumn();
+            this.dataColumn20 = new System.Data.DataColumn();
+            this.dataColumn21 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingNavigator1
@@ -162,13 +166,10 @@
             // dataSet
             // 
             this.dataSet.DataSetName = "NewDataSet";
-            this.dataSet.Relations.AddRange(new System.Data.DataRelation[] {
-            new System.Data.DataRelation("Relation1", "Table1", "Table2", new string[] {
-                        "ID"}, new string[] {
-                        "ID_animal"}, false)});
             this.dataSet.Tables.AddRange(new System.Data.DataTable[] {
             this.dataTable1,
-            this.dataTable2});
+            this.dataTable2,
+            this.dataTable3});
             // 
             // dataTable1
             // 
@@ -224,56 +225,6 @@
             // 
             this.dataColumn8.Caption = "Летательные способности";
             this.dataColumn8.ColumnName = "flyingAbilities";
-            // 
-            // dataTable2
-            // 
-            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn9,
-            this.dataColumn10,
-            this.dataColumn11,
-            this.dataColumn12,
-            this.dataColumn13,
-            this.dataColumn14,
-            this.dataColumn15});
-            this.dataTable2.Constraints.AddRange(new System.Data.Constraint[] {
-            new System.Data.ForeignKeyConstraint("Relation1", "Table1", new string[] {
-                        "ID"}, new string[] {
-                        "ID_animal"}, System.Data.AcceptRejectRule.None, System.Data.Rule.Cascade, System.Data.Rule.Cascade)});
-            this.dataTable2.TableName = "Table2";
-            // 
-            // dataColumn9
-            // 
-            this.dataColumn9.ColumnName = "ID";
-            // 
-            // dataColumn10
-            // 
-            this.dataColumn10.Caption = "ID животного";
-            this.dataColumn10.ColumnName = "ID_animal";
-            // 
-            // dataColumn11
-            // 
-            this.dataColumn11.Caption = "Ф.И.О.";
-            this.dataColumn11.ColumnName = "name";
-            // 
-            // dataColumn12
-            // 
-            this.dataColumn12.Caption = "Год рождения";
-            this.dataColumn12.ColumnName = "birthYear";
-            // 
-            // dataColumn13
-            // 
-            this.dataColumn13.Caption = "Должность";
-            this.dataColumn13.ColumnName = "position";
-            // 
-            // dataColumn14
-            // 
-            this.dataColumn14.Caption = "Год трудоустройства";
-            this.dataColumn14.ColumnName = "applyYear";
-            // 
-            // dataColumn15
-            // 
-            this.dataColumn15.Caption = "Зарплата";
-            this.dataColumn15.ColumnName = "salary";
             // 
             // bindingNavigatorCountItem
             // 
@@ -352,12 +303,12 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // mySqlDataAdapter1
+            // dataAdapter
             // 
-            this.mySqlDataAdapter1.DeleteCommand = null;
-            this.mySqlDataAdapter1.InsertCommand = null;
-            this.mySqlDataAdapter1.SelectCommand = this.mySqlCommand1;
-            this.mySqlDataAdapter1.UpdateCommand = this.mySqlCommand1;
+            this.dataAdapter.DeleteCommand = null;
+            this.dataAdapter.InsertCommand = null;
+            this.dataAdapter.SelectCommand = this.mySqlCommand1;
+            this.dataAdapter.UpdateCommand = this.mySqlCommand1;
             // 
             // mySqlCommand1
             // 
@@ -368,78 +319,19 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.animalNameDataGridViewTextBoxColumn,
-            this.animalTypeDataGridViewTextBoxColumn,
-            this.maxWeightDataGridViewTextBoxColumn,
-            this.colorDataGridViewTextBoxColumn,
-            this.redDateDataGridViewTextBoxColumn,
-            this.avgLifeDataGridViewTextBoxColumn,
-            this.flyingAbilitiesDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.bindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1042, 305);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            // 
-            // animalNameDataGridViewTextBoxColumn
-            // 
-            this.animalNameDataGridViewTextBoxColumn.DataPropertyName = "animalName";
-            this.animalNameDataGridViewTextBoxColumn.HeaderText = "animalName";
-            this.animalNameDataGridViewTextBoxColumn.Name = "animalNameDataGridViewTextBoxColumn";
-            // 
-            // animalTypeDataGridViewTextBoxColumn
-            // 
-            this.animalTypeDataGridViewTextBoxColumn.DataPropertyName = "animalType";
-            this.animalTypeDataGridViewTextBoxColumn.HeaderText = "animalType";
-            this.animalTypeDataGridViewTextBoxColumn.Name = "animalTypeDataGridViewTextBoxColumn";
-            // 
-            // maxWeightDataGridViewTextBoxColumn
-            // 
-            this.maxWeightDataGridViewTextBoxColumn.DataPropertyName = "maxWeight";
-            this.maxWeightDataGridViewTextBoxColumn.HeaderText = "maxWeight";
-            this.maxWeightDataGridViewTextBoxColumn.Name = "maxWeightDataGridViewTextBoxColumn";
-            // 
-            // colorDataGridViewTextBoxColumn
-            // 
-            this.colorDataGridViewTextBoxColumn.DataPropertyName = "color";
-            this.colorDataGridViewTextBoxColumn.HeaderText = "color";
-            this.colorDataGridViewTextBoxColumn.Name = "colorDataGridViewTextBoxColumn";
-            // 
-            // redDateDataGridViewTextBoxColumn
-            // 
-            this.redDateDataGridViewTextBoxColumn.DataPropertyName = "redDate";
-            this.redDateDataGridViewTextBoxColumn.HeaderText = "redDate";
-            this.redDateDataGridViewTextBoxColumn.Name = "redDateDataGridViewTextBoxColumn";
-            // 
-            // avgLifeDataGridViewTextBoxColumn
-            // 
-            this.avgLifeDataGridViewTextBoxColumn.DataPropertyName = "avgLife";
-            this.avgLifeDataGridViewTextBoxColumn.HeaderText = "avgLife";
-            this.avgLifeDataGridViewTextBoxColumn.Name = "avgLifeDataGridViewTextBoxColumn";
-            // 
-            // flyingAbilitiesDataGridViewTextBoxColumn
-            // 
-            this.flyingAbilitiesDataGridViewTextBoxColumn.DataPropertyName = "flyingAbilities";
-            this.flyingAbilitiesDataGridViewTextBoxColumn.HeaderText = "flyingAbilities";
-            this.flyingAbilitiesDataGridViewTextBoxColumn.Name = "flyingAbilitiesDataGridViewTextBoxColumn";
-            // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(12, 594);
+            this.saveButton.Location = new System.Drawing.Point(12, 604);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(510, 40);
+            this.saveButton.Size = new System.Drawing.Size(510, 30);
             this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Сохранить изменения";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -448,9 +340,9 @@
             // exitButton
             // 
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.exitButton.Location = new System.Drawing.Point(543, 548);
+            this.exitButton.Location = new System.Drawing.Point(543, 604);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(511, 86);
+            this.exitButton.Size = new System.Drawing.Size(511, 30);
             this.exitButton.TabIndex = 5;
             this.exitButton.Text = "Выход";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -458,27 +350,27 @@
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchTextBox.Location = new System.Drawing.Point(804, 366);
+            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.searchTextBox.Location = new System.Drawing.Point(799, 459);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(250, 22);
+            this.searchTextBox.Size = new System.Drawing.Size(250, 21);
             this.searchTextBox.TabIndex = 6;
             this.searchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchTextBox_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(801, 347);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(796, 440);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 16);
+            this.label1.Size = new System.Drawing.Size(181, 15);
             this.label1.TabIndex = 7;
             this.label1.Text = "Введите название животного";
             // 
             // searchButton
             // 
-            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchButton.Location = new System.Drawing.Point(804, 394);
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.searchButton.Location = new System.Drawing.Point(799, 487);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(120, 30);
             this.searchButton.TabIndex = 8;
@@ -488,8 +380,8 @@
             // 
             // cancelSearchButton
             // 
-            this.cancelSearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cancelSearchButton.Location = new System.Drawing.Point(934, 394);
+            this.cancelSearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelSearchButton.Location = new System.Drawing.Point(929, 487);
             this.cancelSearchButton.Name = "cancelSearchButton";
             this.cancelSearchButton.Size = new System.Drawing.Size(120, 30);
             this.cancelSearchButton.TabIndex = 9;
@@ -500,26 +392,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(801, 448);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(796, 520);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(176, 16);
+            this.label2.Size = new System.Drawing.Size(158, 15);
             this.label2.TabIndex = 11;
             this.label2.Text = "Введите класс животного";
             // 
             // filterTextBox
             // 
-            this.filterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.filterTextBox.Location = new System.Drawing.Point(804, 467);
+            this.filterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.filterTextBox.Location = new System.Drawing.Point(799, 539);
             this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(250, 22);
+            this.filterTextBox.Size = new System.Drawing.Size(250, 21);
             this.filterTextBox.TabIndex = 10;
             this.filterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterTextBox_KeyPress);
             // 
             // filterButton
             // 
-            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.filterButton.Location = new System.Drawing.Point(804, 495);
+            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.filterButton.Location = new System.Drawing.Point(799, 567);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(120, 30);
             this.filterButton.TabIndex = 12;
@@ -529,8 +421,8 @@
             // 
             // cancelFilterButton
             // 
-            this.cancelFilterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cancelFilterButton.Location = new System.Drawing.Point(934, 495);
+            this.cancelFilterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelFilterButton.Location = new System.Drawing.Point(929, 567);
             this.cancelFilterButton.Name = "cancelFilterButton";
             this.cancelFilterButton.Size = new System.Drawing.Size(120, 30);
             this.cancelFilterButton.TabIndex = 13;
@@ -559,9 +451,9 @@
             // insertButton
             // 
             this.insertButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.insertButton.Location = new System.Drawing.Point(12, 548);
+            this.insertButton.Location = new System.Drawing.Point(12, 567);
             this.insertButton.Name = "insertButton";
-            this.insertButton.Size = new System.Drawing.Size(510, 40);
+            this.insertButton.Size = new System.Drawing.Size(510, 30);
             this.insertButton.TabIndex = 16;
             this.insertButton.Text = "Добавить запись";
             this.insertButton.UseVisualStyleBackColor = true;
@@ -677,10 +569,10 @@
             // 
             // deleteCurrentRowButton
             // 
-            this.deleteCurrentRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteCurrentRowButton.Location = new System.Drawing.Point(543, 439);
+            this.deleteCurrentRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteCurrentRowButton.Location = new System.Drawing.Point(543, 566);
             this.deleteCurrentRowButton.Name = "deleteCurrentRowButton";
-            this.deleteCurrentRowButton.Size = new System.Drawing.Size(250, 40);
+            this.deleteCurrentRowButton.Size = new System.Drawing.Size(250, 30);
             this.deleteCurrentRowButton.TabIndex = 29;
             this.deleteCurrentRowButton.Text = "Удалить текущую запись";
             this.deleteCurrentRowButton.UseVisualStyleBackColor = true;
@@ -707,10 +599,10 @@
             // 
             // updateRowButton
             // 
-            this.updateRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.updateRowButton.Location = new System.Drawing.Point(543, 347);
+            this.updateRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateRowButton.Location = new System.Drawing.Point(543, 487);
             this.updateRowButton.Name = "updateRowButton";
-            this.updateRowButton.Size = new System.Drawing.Size(250, 40);
+            this.updateRowButton.Size = new System.Drawing.Size(250, 30);
             this.updateRowButton.TabIndex = 32;
             this.updateRowButton.Text = "Изменить запись по критерию";
             this.updateRowButton.UseVisualStyleBackColor = true;
@@ -718,10 +610,10 @@
             // 
             // deleteRowButton
             // 
-            this.deleteRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteRowButton.Location = new System.Drawing.Point(543, 393);
+            this.deleteRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteRowButton.Location = new System.Drawing.Point(543, 530);
             this.deleteRowButton.Name = "deleteRowButton";
-            this.deleteRowButton.Size = new System.Drawing.Size(250, 40);
+            this.deleteRowButton.Size = new System.Drawing.Size(250, 30);
             this.deleteRowButton.TabIndex = 33;
             this.deleteRowButton.Text = "Удалить запись по критерию";
             this.deleteRowButton.UseVisualStyleBackColor = true;
@@ -729,10 +621,10 @@
             // 
             // changeCurrentRowButton
             // 
-            this.changeCurrentRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.changeCurrentRowButton.Location = new System.Drawing.Point(543, 485);
+            this.changeCurrentRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.changeCurrentRowButton.Location = new System.Drawing.Point(543, 451);
             this.changeCurrentRowButton.Name = "changeCurrentRowButton";
-            this.changeCurrentRowButton.Size = new System.Drawing.Size(250, 40);
+            this.changeCurrentRowButton.Size = new System.Drawing.Size(250, 30);
             this.changeCurrentRowButton.TabIndex = 34;
             this.changeCurrentRowButton.Text = "Изменить текущую запись";
             this.changeCurrentRowButton.UseVisualStyleBackColor = true;
@@ -740,7 +632,6 @@
             // 
             // relation1BindingSource
             // 
-            this.relation1BindingSource.DataMember = "Relation1";
             this.relation1BindingSource.DataSource = this.bindingSource;
             // 
             // openEmpButton
@@ -753,11 +644,133 @@
             this.openEmpButton.UseVisualStyleBackColor = true;
             this.openEmpButton.Click += new System.EventHandler(this.openEmpButton_Click);
             // 
+            // redDateFilter
+            // 
+            this.redDateFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.redDateFilter.Location = new System.Drawing.Point(543, 359);
+            this.redDateFilter.Name = "redDateFilter";
+            this.redDateFilter.Size = new System.Drawing.Size(250, 30);
+            this.redDateFilter.TabIndex = 36;
+            this.redDateFilter.Text = "Фильтрация по Красной книге";
+            this.redDateFilter.UseVisualStyleBackColor = true;
+            this.redDateFilter.Click += new System.EventHandler(this.redDateFilter_Click);
+            // 
+            // empCountFilter
+            // 
+            this.empCountFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.empCountFilter.Location = new System.Drawing.Point(802, 359);
+            this.empCountFilter.Name = "empCountFilter";
+            this.empCountFilter.Size = new System.Drawing.Size(250, 30);
+            this.empCountFilter.TabIndex = 37;
+            this.empCountFilter.Text = "Фильтрация по количеству ухаживающих";
+            this.empCountFilter.UseVisualStyleBackColor = true;
+            this.empCountFilter.Click += new System.EventHandler(this.empCountFilter_Click);
+            // 
+            // empSalaryFilter
+            // 
+            this.empSalaryFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.empSalaryFilter.Location = new System.Drawing.Point(543, 395);
+            this.empSalaryFilter.Name = "empSalaryFilter";
+            this.empSalaryFilter.Size = new System.Drawing.Size(250, 30);
+            this.empSalaryFilter.TabIndex = 38;
+            this.empSalaryFilter.Text = "Фильтрация по зарплате персонала";
+            this.empSalaryFilter.UseVisualStyleBackColor = true;
+            // 
+            // dataTable2
+            // 
+            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn9,
+            this.dataColumn10,
+            this.dataColumn11,
+            this.dataColumn12,
+            this.dataColumn13,
+            this.dataColumn14,
+            this.dataColumn15,
+            this.dataColumn16});
+            this.dataTable2.TableName = "Filter";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "ID";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.ColumnName = "animalName";
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.ColumnName = "animalType";
+            // 
+            // dataColumn12
+            // 
+            this.dataColumn12.ColumnName = "maxWeight";
+            // 
+            // dataColumn13
+            // 
+            this.dataColumn13.ColumnName = "color";
+            // 
+            // dataColumn14
+            // 
+            this.dataColumn14.ColumnName = "redDate";
+            // 
+            // dataColumn15
+            // 
+            this.dataColumn15.ColumnName = "avgLife";
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.ColumnName = "flyingAbilities";
+            // 
+            // cancelQueryFilterButton
+            // 
+            this.cancelQueryFilterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelQueryFilterButton.Location = new System.Drawing.Point(802, 395);
+            this.cancelQueryFilterButton.Name = "cancelQueryFilterButton";
+            this.cancelQueryFilterButton.Size = new System.Drawing.Size(250, 30);
+            this.cancelQueryFilterButton.TabIndex = 39;
+            this.cancelQueryFilterButton.Text = "Отмена фильтрации";
+            this.cancelQueryFilterButton.UseVisualStyleBackColor = true;
+            this.cancelQueryFilterButton.Click += new System.EventHandler(this.cancelQueryFilterButton_Click);
+            // 
+            // dataTable3
+            // 
+            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn17,
+            this.dataColumn18,
+            this.dataColumn19,
+            this.dataColumn20,
+            this.dataColumn21});
+            this.dataTable3.TableName = "FilterEmp";
+            // 
+            // dataColumn17
+            // 
+            this.dataColumn17.ColumnName = "ID";
+            // 
+            // dataColumn18
+            // 
+            this.dataColumn18.ColumnName = "animalName";
+            // 
+            // dataColumn19
+            // 
+            this.dataColumn19.ColumnName = "empID";
+            // 
+            // dataColumn20
+            // 
+            this.dataColumn20.ColumnName = "name";
+            // 
+            // dataColumn21
+            // 
+            this.dataColumn21.ColumnName = "applyYear";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 651);
+            this.Controls.Add(this.cancelQueryFilterButton);
+            this.Controls.Add(this.empSalaryFilter);
+            this.Controls.Add(this.empCountFilter);
+            this.Controls.Add(this.redDateFilter);
             this.Controls.Add(this.openEmpButton);
             this.Controls.Add(this.changeCurrentRowButton);
             this.Controls.Add(this.deleteRowButton);
@@ -801,9 +814,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -823,7 +837,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private MySql.Data.MySqlClient.MySqlConnection connection;
-        private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
+        private MySql.Data.MySqlClient.MySqlDataAdapter dataAdapter;
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button saveButton;
@@ -868,6 +882,11 @@
         private System.Data.DataColumn dataColumn6;
         private System.Data.DataColumn dataColumn7;
         private System.Data.DataColumn dataColumn8;
+        private System.Windows.Forms.BindingSource relation1BindingSource;
+        private System.Windows.Forms.Button openEmpButton;
+        private System.Windows.Forms.Button redDateFilter;
+        private System.Windows.Forms.Button empCountFilter;
+        private System.Windows.Forms.Button empSalaryFilter;
         private System.Data.DataTable dataTable2;
         private System.Data.DataColumn dataColumn9;
         private System.Data.DataColumn dataColumn10;
@@ -876,16 +895,14 @@
         private System.Data.DataColumn dataColumn13;
         private System.Data.DataColumn dataColumn14;
         private System.Data.DataColumn dataColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn animalNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn animalTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maxWeightDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn redDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn avgLifeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn flyingAbilitiesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource relation1BindingSource;
-        private System.Windows.Forms.Button openEmpButton;
+        private System.Data.DataColumn dataColumn16;
+        private System.Windows.Forms.Button cancelQueryFilterButton;
+        private System.Data.DataTable dataTable3;
+        private System.Data.DataColumn dataColumn17;
+        private System.Data.DataColumn dataColumn18;
+        private System.Data.DataColumn dataColumn19;
+        private System.Data.DataColumn dataColumn20;
+        private System.Data.DataColumn dataColumn21;
     }
 }
 
