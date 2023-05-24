@@ -261,6 +261,7 @@ namespace Lab_1
                 $"avgLife = @avgLife, " +
                 $"flyingAbilities = @flyingAbilities " +
                 $"where ID = @ID";
+
             try
             {
                 connection = new MySqlConnection(connect);
@@ -323,7 +324,7 @@ namespace Lab_1
         private void redDateFilter_Click(object sender, EventArgs e)
         {
             dataSet.Tables[1].Clear();
-            string query = "select * from animals where redDate > '2004.12.31' and avgLife < 11";
+            string query = "select * from animals where redDate > '2004.12.31' and avgLife < 20";
 
             using(connection = new MySqlConnection(connect))
             {
@@ -353,15 +354,9 @@ namespace Lab_1
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.Add(new MySqlParameter("@year", Convert.ToInt32(DateTime.Now.Year)));
 
-                connection.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    dataSet.Tables["FilterEmp"].Rows.Add(reader[0], reader[1], reader[2], reader[3], reader[4]);
-                }
-
-                bindingSource.DataSource = dataSet.Tables["FilterEmp"];
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dataTable);
+                bindingSource.DataSource = dataTable;
                 dataGridView1.ReadOnly = true;
             }
         }
@@ -371,6 +366,23 @@ namespace Lab_1
             dataGridView1.ReadOnly = false;
             bindingSource.DataSource = dataSet;
             bindingSource.DataMember = "Table1";
+        }
+
+        private void empSalaryFilter_Click(object sender, EventArgs e)
+        {
+            string query = "select animals.animalType, min(animals.avgLife) as 'minimal average lifetime', count(employees.ID) as 'employees count', employees.salary from animals " +
+                "inner join employees on animals.ID = employees.ID_animal " +
+                "group by animals.animalType having salary > 24999";
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            DataTable dataTable = new DataTable();
+
+            dataAdapter = new MySqlDataAdapter(cmd);
+            dataAdapter.Fill(dataTable);
+
+            bindingSource.DataSource = dataTable;
+            dataGridView1.ReadOnly = true;
+
         }
     }
 }

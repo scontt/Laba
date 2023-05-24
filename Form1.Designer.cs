@@ -43,6 +43,21 @@
             this.dataColumn6 = new System.Data.DataColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn8 = new System.Data.DataColumn();
+            this.dataTable2 = new System.Data.DataTable();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
+            this.dataColumn12 = new System.Data.DataColumn();
+            this.dataColumn13 = new System.Data.DataColumn();
+            this.dataColumn14 = new System.Data.DataColumn();
+            this.dataColumn15 = new System.Data.DataColumn();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.dataTable3 = new System.Data.DataTable();
+            this.dataColumn17 = new System.Data.DataColumn();
+            this.dataColumn18 = new System.Data.DataColumn();
+            this.dataColumn19 = new System.Data.DataColumn();
+            this.dataColumn20 = new System.Data.DataColumn();
+            this.dataColumn21 = new System.Data.DataColumn();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -77,7 +92,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.colorTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.redDateTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.avgLifeTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -93,31 +107,17 @@
             this.redDateFilter = new System.Windows.Forms.Button();
             this.empCountFilter = new System.Windows.Forms.Button();
             this.empSalaryFilter = new System.Windows.Forms.Button();
-            this.dataTable2 = new System.Data.DataTable();
-            this.dataColumn9 = new System.Data.DataColumn();
-            this.dataColumn10 = new System.Data.DataColumn();
-            this.dataColumn11 = new System.Data.DataColumn();
-            this.dataColumn12 = new System.Data.DataColumn();
-            this.dataColumn13 = new System.Data.DataColumn();
-            this.dataColumn14 = new System.Data.DataColumn();
-            this.dataColumn15 = new System.Data.DataColumn();
-            this.dataColumn16 = new System.Data.DataColumn();
             this.cancelQueryFilterButton = new System.Windows.Forms.Button();
-            this.dataTable3 = new System.Data.DataTable();
-            this.dataColumn17 = new System.Data.DataColumn();
-            this.dataColumn18 = new System.Data.DataColumn();
-            this.dataColumn19 = new System.Data.DataColumn();
-            this.dataColumn20 = new System.Data.DataColumn();
-            this.dataColumn21 = new System.Data.DataColumn();
+            this.redDateTextBox = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingNavigator1
@@ -225,6 +225,81 @@
             // 
             this.dataColumn8.Caption = "Летательные способности";
             this.dataColumn8.ColumnName = "flyingAbilities";
+            // 
+            // dataTable2
+            // 
+            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn9,
+            this.dataColumn10,
+            this.dataColumn11,
+            this.dataColumn12,
+            this.dataColumn13,
+            this.dataColumn14,
+            this.dataColumn15,
+            this.dataColumn16});
+            this.dataTable2.TableName = "Filter";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "ID";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.ColumnName = "animalName";
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.ColumnName = "animalType";
+            // 
+            // dataColumn12
+            // 
+            this.dataColumn12.ColumnName = "maxWeight";
+            // 
+            // dataColumn13
+            // 
+            this.dataColumn13.ColumnName = "color";
+            // 
+            // dataColumn14
+            // 
+            this.dataColumn14.ColumnName = "redDate";
+            // 
+            // dataColumn15
+            // 
+            this.dataColumn15.ColumnName = "avgLife";
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.ColumnName = "flyingAbilities";
+            // 
+            // dataTable3
+            // 
+            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn17,
+            this.dataColumn18,
+            this.dataColumn19,
+            this.dataColumn20,
+            this.dataColumn21});
+            this.dataTable3.TableName = "FilterEmp";
+            // 
+            // dataColumn17
+            // 
+            this.dataColumn17.ColumnName = "ID";
+            // 
+            // dataColumn18
+            // 
+            this.dataColumn18.ColumnName = "animalName";
+            // 
+            // dataColumn19
+            // 
+            this.dataColumn19.ColumnName = "empID";
+            // 
+            // dataColumn20
+            // 
+            this.dataColumn20.ColumnName = "name";
+            // 
+            // dataColumn21
+            // 
+            this.dataColumn21.ColumnName = "applyYear";
             // 
             // bindingNavigatorCountItem
             // 
@@ -523,14 +598,6 @@
             this.label7.TabIndex = 24;
             this.label7.Text = "Дата занесения в Красную книгу";
             // 
-            // redDateTextBox
-            // 
-            this.redDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.redDateTextBox.Location = new System.Drawing.Point(272, 455);
-            this.redDateTextBox.Name = "redDateTextBox";
-            this.redDateTextBox.Size = new System.Drawing.Size(250, 22);
-            this.redDateTextBox.TabIndex = 23;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -570,7 +637,7 @@
             // deleteCurrentRowButton
             // 
             this.deleteCurrentRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteCurrentRowButton.Location = new System.Drawing.Point(543, 566);
+            this.deleteCurrentRowButton.Location = new System.Drawing.Point(543, 567);
             this.deleteCurrentRowButton.Name = "deleteCurrentRowButton";
             this.deleteCurrentRowButton.Size = new System.Drawing.Size(250, 30);
             this.deleteCurrentRowButton.TabIndex = 29;
@@ -611,7 +678,7 @@
             // deleteRowButton
             // 
             this.deleteRowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteRowButton.Location = new System.Drawing.Point(543, 530);
+            this.deleteRowButton.Location = new System.Drawing.Point(543, 531);
             this.deleteRowButton.Name = "deleteRowButton";
             this.deleteRowButton.Size = new System.Drawing.Size(250, 30);
             this.deleteRowButton.TabIndex = 33;
@@ -675,51 +742,7 @@
             this.empSalaryFilter.TabIndex = 38;
             this.empSalaryFilter.Text = "Фильтрация по зарплате персонала";
             this.empSalaryFilter.UseVisualStyleBackColor = true;
-            // 
-            // dataTable2
-            // 
-            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn9,
-            this.dataColumn10,
-            this.dataColumn11,
-            this.dataColumn12,
-            this.dataColumn13,
-            this.dataColumn14,
-            this.dataColumn15,
-            this.dataColumn16});
-            this.dataTable2.TableName = "Filter";
-            // 
-            // dataColumn9
-            // 
-            this.dataColumn9.ColumnName = "ID";
-            // 
-            // dataColumn10
-            // 
-            this.dataColumn10.ColumnName = "animalName";
-            // 
-            // dataColumn11
-            // 
-            this.dataColumn11.ColumnName = "animalType";
-            // 
-            // dataColumn12
-            // 
-            this.dataColumn12.ColumnName = "maxWeight";
-            // 
-            // dataColumn13
-            // 
-            this.dataColumn13.ColumnName = "color";
-            // 
-            // dataColumn14
-            // 
-            this.dataColumn14.ColumnName = "redDate";
-            // 
-            // dataColumn15
-            // 
-            this.dataColumn15.ColumnName = "avgLife";
-            // 
-            // dataColumn16
-            // 
-            this.dataColumn16.ColumnName = "flyingAbilities";
+            this.empSalaryFilter.Click += new System.EventHandler(this.empSalaryFilter_Click);
             // 
             // cancelQueryFilterButton
             // 
@@ -732,41 +755,21 @@
             this.cancelQueryFilterButton.UseVisualStyleBackColor = true;
             this.cancelQueryFilterButton.Click += new System.EventHandler(this.cancelQueryFilterButton_Click);
             // 
-            // dataTable3
+            // redDateTextBox
             // 
-            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn17,
-            this.dataColumn18,
-            this.dataColumn19,
-            this.dataColumn20,
-            this.dataColumn21});
-            this.dataTable3.TableName = "FilterEmp";
-            // 
-            // dataColumn17
-            // 
-            this.dataColumn17.ColumnName = "ID";
-            // 
-            // dataColumn18
-            // 
-            this.dataColumn18.ColumnName = "animalName";
-            // 
-            // dataColumn19
-            // 
-            this.dataColumn19.ColumnName = "empID";
-            // 
-            // dataColumn20
-            // 
-            this.dataColumn20.ColumnName = "name";
-            // 
-            // dataColumn21
-            // 
-            this.dataColumn21.ColumnName = "applyYear";
+            this.redDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.redDateTextBox.Location = new System.Drawing.Point(272, 455);
+            this.redDateTextBox.Mask = "00.00.0000";
+            this.redDateTextBox.Name = "redDateTextBox";
+            this.redDateTextBox.Size = new System.Drawing.Size(250, 22);
+            this.redDateTextBox.TabIndex = 40;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 651);
+            this.Controls.Add(this.redDateTextBox);
             this.Controls.Add(this.cancelQueryFilterButton);
             this.Controls.Add(this.empSalaryFilter);
             this.Controls.Add(this.empCountFilter);
@@ -783,7 +786,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.avgLifeTextBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.redDateTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.colorTextBox);
             this.Controls.Add(this.label5);
@@ -814,10 +816,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -861,7 +863,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox colorTextBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox redDateTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox avgLifeTextBox;
         private System.Windows.Forms.Label label9;
@@ -903,6 +904,7 @@
         private System.Data.DataColumn dataColumn19;
         private System.Data.DataColumn dataColumn20;
         private System.Data.DataColumn dataColumn21;
+        private System.Windows.Forms.MaskedTextBox redDateTextBox;
     }
 }
 
