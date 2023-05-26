@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static Mysqlx.Expect.Open.Types;
 
 namespace Lab_1
 {
@@ -28,6 +30,7 @@ namespace Lab_1
         string sql = "select * from animals";
         int index = 0;
         MySqlCommandBuilder builder;
+        DataSet dataSet = new DataSet();
 
         public Form1()
         {
@@ -39,13 +42,16 @@ namespace Lab_1
             using (connection = new MySqlConnection(connect))
             {
                 dataAdapter = new MySqlDataAdapter(sql, connection);
-                dataAdapter.Fill(dataSet.Tables[0]);
+                dataAdapter.Fill(dataSet);
             }
-            dataGridView1.DataSource = bindingSource;
+            dataGridView1.DataSource = dataSet.Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.Columns[0].ReadOnly = true;
+
+            bindingSource.DataSource = dataSet.Tables[0];
+            dataGridView1.DataSource = bindingSource;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -73,7 +79,7 @@ namespace Lab_1
             {
                 dataAdapter = new MySqlDataAdapter(sql, connection);
                 MySqlCommandBuilder builder = new MySqlCommandBuilder(dataAdapter);
-                dataAdapter.Update(dataSet.Tables["Table1"]);
+                dataAdapter.Update(dataSet.Tables[0]);
             }
         }
 
@@ -114,14 +120,14 @@ namespace Lab_1
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            bindingSource.Filter = "animalType like '" + filterTextBox.Text.Trim() + "'";
+            bindingSource.Filter = $"animalType like '{filterTextBox.Text.Trim()}'";
             dataGridView1.DataSource = bindingSource;
         }
 
         private void cancelFilterButton_Click(object sender, EventArgs e)
         {
             bindingSource.Filter = default;
-            dataGridView1.DataSource = bindingSource;
+            dataGridView1.DataSource = dataSet.Tables[0];
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -195,9 +201,7 @@ namespace Lab_1
 
         private void updateRowButton_Click(object sender, EventArgs e)
         {
-            bindingSource.DataSource = dataSet;
-            bindingSource.DataMember = "Table1";
-            dataGridView1.DataSource = bindingSource;
+            dataGridView1.DataSource = dataSet.Tables[0];
 
             string query = $"update animals set " +
                 $"animalName = @animalName, " +
@@ -246,6 +250,7 @@ namespace Lab_1
                 MySqlCommand empCommand = new MySqlCommand(empQuery, connection);
                 empCommand.Parameters.Add(new MySqlParameter("@ID_animal", Convert.ToInt32(idTextBox.Text)));
 
+                connection.Open();
                 MySqlDataReader reader = empCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -256,7 +261,6 @@ namespace Lab_1
                 }
                 reader.Close();
 
-                connection.Open();
                 command.ExecuteNonQuery();
                 dataAdapter.Fill(dataSet);
                 dataSet.Clear();
@@ -266,7 +270,7 @@ namespace Lab_1
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentCell != null)
+            if (dataGridView1.CurrentCell != null && dataGridView1.Columns.Count == 8)
             {
                 int k = dataGridView1.CurrentCell.RowIndex;
 
@@ -352,41 +356,43 @@ namespace Lab_1
 
         private void redDateFilter_Click(object sender, EventArgs e)
         {
-            dataSet.Tables[1].Clear();
-            string query = "select * from animals where redDate > '2004.12.31' and avgLife < 20";
-
-            using(connection = new MySqlConnection(connect))
+            if (dataSet.Tables.Contains("redDateFilter"))
             {
-                connection.Open();
+                dataGridView1.DataSource = dataSet.Tables[1];
+            }
+            else
+            {
+                dataSet.Tables.Add("redDateFilter");
+                string query = "select * from animals where redDate > '2004.12.31' and avgLife < 20";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                dataAdapter = new MySqlDataAdapter(cmd);
 
-                while (reader.Read())
-                {
-                    dataSet.Tables[1].Rows.Add(reader[0], reader[1], reader[2], reader[3], reader[4], reader[5], reader[6], reader[7]);
-                }
+                dataAdapter.Fill(dataSet.Tables["redDateFilter"]);
 
-                bindingSource.DataSource = dataSet.Tables[1];
+                dataGridView1.DataSource = dataSet.Tables["redDateFilter"];
             }
         }
 
         private void empCountFilter_Click(object sender, EventArgs e)
         {
-            dataSet.Tables["FilterEmp"].Clear();
             string query = "select animals.ID, animals.animalName, employees.ID as 'empID', employees.name, employees.applyYear from animals " +
                 "inner join employees on animals.ID = employees.ID_animal " +
                 "where @year - employees.applyYear > 4";
-            DataTable dataTable = new DataTable();
 
-            using (connection = new MySqlConnection(connect))
+            if (dataSet.Tables.Contains("empCountFilter"))
             {
+                dataGridView1.DataSource = dataSet.Tables["empCountFilter"];
+            }
+            else
+            {
+                dataSet.Tables.Add("empCountFilter");
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.Add(new MySqlParameter("@year", Convert.ToInt32(DateTime.Now.Year)));
 
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                da.Fill(dataTable);
-                bindingSource.DataSource = dataTable;
+                dataAdapter = new MySqlDataAdapter(cmd);
+                dataAdapter.Fill(dataSet.Tables["empCountFilter"]);
+                dataGridView1.DataSource = dataSet.Tables["empCountFilter"];
                 dataGridView1.ReadOnly = true;
             }
         }
@@ -394,8 +400,7 @@ namespace Lab_1
         private void cancelQueryFilterButton_Click(object sender, EventArgs e)
         {
             dataGridView1.ReadOnly = false;
-            bindingSource.DataSource = dataSet;
-            bindingSource.DataMember = "Table1";
+            dataGridView1.DataSource = dataSet.Tables[0];
         }
 
         private void empSalaryFilter_Click(object sender, EventArgs e)
@@ -404,14 +409,29 @@ namespace Lab_1
                 "inner join employees on animals.ID = employees.ID_animal " +
                 "group by animals.animalType having salary > 24999";
 
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            DataTable dataTable = new DataTable();
+            //MySqlCommand cmd = new MySqlCommand(query, connection);
+            //DataTable dataTable = new DataTable();
 
-            dataAdapter = new MySqlDataAdapter(cmd);
-            dataAdapter.Fill(dataTable);
+            //dataAdapter = new MySqlDataAdapter(cmd);
+            //dataAdapter.Fill(dataTable);
 
-            bindingSource.DataSource = dataTable;
-            dataGridView1.ReadOnly = true;
+            //bindingSource.DataSource = dataTable;
+            //dataGridView1.ReadOnly = true;
+
+            if (dataSet.Tables.Contains("empSalaryFilter"))
+            {
+                dataGridView1.DataSource = dataSet.Tables["empSalaryFilter"];
+            }
+            else
+            {
+                dataSet.Tables.Add("empSalaryFilter");
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                dataAdapter = new MySqlDataAdapter(cmd);
+                dataAdapter.Fill(dataSet.Tables["empSalaryFilter"]);
+                dataGridView1.DataSource = dataSet.Tables["empSalaryFilter"];
+                dataGridView1.ReadOnly = true;
+            }
 
         }
 
@@ -435,6 +455,90 @@ namespace Lab_1
         private void cancelSelectButton_Click(object sender, EventArgs e)
         {
             cancelFilterButton_Click(sender, e);
+        }
+
+        private void xmlExportButton_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter("../../animalsTable.xml"))
+            {
+                dataSet.WriteXml(sw);
+                MessageBox.Show("XML файл успешно сохранен", "Выполнено");
+            }
+        }
+
+        private void xmlImportButton_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("../../animalsTable.xml"))
+            {
+                DataSet ds = new DataSet();
+
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+                ds.ReadXml("../../animalsTable.xml");
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+        }
+
+        private void csvExportButton_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sr = new StreamWriter("../../animalsTable.csv", false, Encoding.GetEncoding(1251)))
+            {
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    sr.WriteLine(row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," + row[3].ToString() + "," + row[4].ToString() +
+                         "," + row[5].ToString() + "," + row[6].ToString() + "," + row[7].ToString(), Encoding.GetEncoding(1251));
+                }
+            }
+        }
+
+        private void csvImportButton_Click(object sender, EventArgs e)
+        {
+            string str;
+            string[] row;
+
+            string query = "DELETE FROM animals"; // удалить данные из таблицы
+
+            using (connection = new MySqlConnection(connect))
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery(); // выполнить запрос
+            }
+
+            query = "insert into animals(ID, animalName, animalType, maxWeight, color, redDate, avgLife, flyingAbilities) " +
+                $"values(@ID, @animalName, @animalType, @maxWeight, @color, @redDate, @avgLife, @flyingAbilities)";
+            using (StreamReader sr = new StreamReader("../../animalsTable.csv", Encoding.GetEncoding("windows-1251")))
+            {
+                while (!sr.EndOfStream)
+                {
+                    str = sr.ReadLine(); // считать строку
+                    row = str.Split(new char[] { ',' }); // определить разделитель
+
+                    command = new MySqlCommand(query, connection);
+
+                    command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(row[0])));
+                    command.Parameters.Add(new MySqlParameter("@animalName", row[1]));
+                    command.Parameters.Add(new MySqlParameter("@animalType", row[2]));
+                    command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(row[3])));
+                    command.Parameters.Add(new MySqlParameter("@color", row[4]));
+                    command.Parameters.Add(new MySqlParameter("@redDate", row[5]));
+                    command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(row[6])));
+                    command.Parameters.Add(new MySqlParameter("@flyingAbilities", row[7]));
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                        dataGridView1.DataSource = null;
+                        dataGridView1.Rows.Clear();
+                        dataSet.Clear();
+                        dataAdapter.Fill(dataSet.Tables[0]);
+                        dataGridView1.DataSource = dataSet.Tables[0];
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); connection.Close(); }
+                }
+            }
         }
     }
 }

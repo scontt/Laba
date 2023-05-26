@@ -33,31 +33,6 @@
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet = new System.Data.DataSet();
-            this.dataTable1 = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
-            this.dataColumn5 = new System.Data.DataColumn();
-            this.dataColumn6 = new System.Data.DataColumn();
-            this.dataColumn7 = new System.Data.DataColumn();
-            this.dataColumn8 = new System.Data.DataColumn();
-            this.dataTable2 = new System.Data.DataTable();
-            this.dataColumn9 = new System.Data.DataColumn();
-            this.dataColumn10 = new System.Data.DataColumn();
-            this.dataColumn11 = new System.Data.DataColumn();
-            this.dataColumn12 = new System.Data.DataColumn();
-            this.dataColumn13 = new System.Data.DataColumn();
-            this.dataColumn14 = new System.Data.DataColumn();
-            this.dataColumn15 = new System.Data.DataColumn();
-            this.dataColumn16 = new System.Data.DataColumn();
-            this.dataTable3 = new System.Data.DataTable();
-            this.dataColumn17 = new System.Data.DataColumn();
-            this.dataColumn18 = new System.Data.DataColumn();
-            this.dataColumn19 = new System.Data.DataColumn();
-            this.dataColumn20 = new System.Data.DataColumn();
-            this.dataColumn21 = new System.Data.DataColumn();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -117,22 +92,42 @@
             this.selectAvgLifeTextBox = new System.Windows.Forms.TextBox();
             this.selectButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cancelSelectButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.xmlExportButton = new System.Windows.Forms.Button();
-            this.xmlImportButton = new System.Windows.Forms.Button();
-            this.csvExportButton = new System.Windows.Forms.Button();
             this.csvImportButton = new System.Windows.Forms.Button();
-            this.cancelSelectButton = new System.Windows.Forms.Button();
+            this.csvExportButton = new System.Windows.Forms.Button();
+            this.xmlImportButton = new System.Windows.Forms.Button();
+            this.xmlExportButton = new System.Windows.Forms.Button();
+            this.dataColumn21 = new System.Data.DataColumn();
+            this.dataColumn20 = new System.Data.DataColumn();
+            this.dataColumn19 = new System.Data.DataColumn();
+            this.dataColumn18 = new System.Data.DataColumn();
+            this.dataColumn17 = new System.Data.DataColumn();
+            this.dataTable3 = new System.Data.DataTable();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.dataColumn15 = new System.Data.DataColumn();
+            this.dataColumn14 = new System.Data.DataColumn();
+            this.dataColumn13 = new System.Data.DataColumn();
+            this.dataColumn12 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataTable2 = new System.Data.DataTable();
+            this.dataColumn8 = new System.Data.DataColumn();
+            this.dataColumn7 = new System.Data.DataColumn();
+            this.dataColumn6 = new System.Data.DataColumn();
+            this.dataColumn5 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataTable1 = new System.Data.DataTable();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -140,6 +135,9 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingNavigator1
@@ -183,145 +181,6 @@
             // bindingSource
             // 
             this.bindingSource.DataMember = "Table1";
-            this.bindingSource.DataSource = this.dataSet;
-            // 
-            // dataSet
-            // 
-            this.dataSet.DataSetName = "NewDataSet";
-            this.dataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.dataTable1,
-            this.dataTable2,
-            this.dataTable3});
-            // 
-            // dataTable1
-            // 
-            this.dataTable1.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4,
-            this.dataColumn5,
-            this.dataColumn6,
-            this.dataColumn7,
-            this.dataColumn8});
-            this.dataTable1.Constraints.AddRange(new System.Data.Constraint[] {
-            new System.Data.UniqueConstraint("Constraint1", new string[] {
-                        "ID"}, false)});
-            this.dataTable1.TableName = "Table1";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "ID";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.Caption = "Название";
-            this.dataColumn2.ColumnName = "animalName";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.Caption = "Класс";
-            this.dataColumn3.ColumnName = "animalType";
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.Caption = "Максимальный вес";
-            this.dataColumn4.ColumnName = "maxWeight";
-            // 
-            // dataColumn5
-            // 
-            this.dataColumn5.Caption = "Цвет";
-            this.dataColumn5.ColumnName = "color";
-            // 
-            // dataColumn6
-            // 
-            this.dataColumn6.Caption = "Дата занесения в Красную книгу";
-            this.dataColumn6.ColumnName = "redDate";
-            // 
-            // dataColumn7
-            // 
-            this.dataColumn7.Caption = "Средняя продолжительность жизни";
-            this.dataColumn7.ColumnName = "avgLife";
-            // 
-            // dataColumn8
-            // 
-            this.dataColumn8.Caption = "Летательные способности";
-            this.dataColumn8.ColumnName = "flyingAbilities";
-            // 
-            // dataTable2
-            // 
-            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn9,
-            this.dataColumn10,
-            this.dataColumn11,
-            this.dataColumn12,
-            this.dataColumn13,
-            this.dataColumn14,
-            this.dataColumn15,
-            this.dataColumn16});
-            this.dataTable2.TableName = "Filter";
-            // 
-            // dataColumn9
-            // 
-            this.dataColumn9.ColumnName = "ID";
-            // 
-            // dataColumn10
-            // 
-            this.dataColumn10.ColumnName = "animalName";
-            // 
-            // dataColumn11
-            // 
-            this.dataColumn11.ColumnName = "animalType";
-            // 
-            // dataColumn12
-            // 
-            this.dataColumn12.ColumnName = "maxWeight";
-            // 
-            // dataColumn13
-            // 
-            this.dataColumn13.ColumnName = "color";
-            // 
-            // dataColumn14
-            // 
-            this.dataColumn14.ColumnName = "redDate";
-            // 
-            // dataColumn15
-            // 
-            this.dataColumn15.ColumnName = "avgLife";
-            // 
-            // dataColumn16
-            // 
-            this.dataColumn16.ColumnName = "flyingAbilities";
-            // 
-            // dataTable3
-            // 
-            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn17,
-            this.dataColumn18,
-            this.dataColumn19,
-            this.dataColumn20,
-            this.dataColumn21});
-            this.dataTable3.TableName = "FilterEmp";
-            // 
-            // dataColumn17
-            // 
-            this.dataColumn17.ColumnName = "ID";
-            // 
-            // dataColumn18
-            // 
-            this.dataColumn18.ColumnName = "animalName";
-            // 
-            // dataColumn19
-            // 
-            this.dataColumn19.ColumnName = "empID";
-            // 
-            // dataColumn20
-            // 
-            this.dataColumn20.ColumnName = "name";
-            // 
-            // dataColumn21
-            // 
-            this.dataColumn21.ColumnName = "applyYear";
             // 
             // bindingNavigatorCountItem
             // 
@@ -427,9 +286,9 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(567, 650);
+            this.saveButton.Location = new System.Drawing.Point(574, 650);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(210, 38);
+            this.saveButton.Size = new System.Drawing.Size(203, 38);
             this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Сохранить изменения";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -438,9 +297,9 @@
             // exitButton
             // 
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.exitButton.Location = new System.Drawing.Point(567, 694);
+            this.exitButton.Location = new System.Drawing.Point(574, 694);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(210, 38);
+            this.exitButton.Size = new System.Drawing.Size(203, 38);
             this.exitButton.TabIndex = 5;
             this.exitButton.Text = "Выход";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -782,7 +641,6 @@
             // 
             this.redDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.redDateTextBox.Location = new System.Drawing.Point(174, 124);
-            this.redDateTextBox.Mask = "00.00.0000";
             this.redDateTextBox.Name = "redDateTextBox";
             this.redDateTextBox.Size = new System.Drawing.Size(159, 18);
             this.redDateTextBox.TabIndex = 40;
@@ -869,6 +727,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выборка данных";
             // 
+            // cancelSelectButton
+            // 
+            this.cancelSelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelSelectButton.Location = new System.Drawing.Point(109, 148);
+            this.cancelSelectButton.Name = "cancelSelectButton";
+            this.cancelSelectButton.Size = new System.Drawing.Size(90, 38);
+            this.cancelSelectButton.TabIndex = 48;
+            this.cancelSelectButton.Text = "Отмена";
+            this.cancelSelectButton.UseVisualStyleBackColor = true;
+            this.cancelSelectButton.Click += new System.EventHandler(this.cancelSelectButton_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label10);
@@ -937,40 +806,10 @@
             this.groupBox5.Controls.Add(this.xmlExportButton);
             this.groupBox5.Location = new System.Drawing.Point(574, 543);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(203, 86);
+            this.groupBox5.Size = new System.Drawing.Size(203, 101);
             this.groupBox5.TabIndex = 52;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Экспорт\\импорт";
-            // 
-            // xmlExportButton
-            // 
-            this.xmlExportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xmlExportButton.Location = new System.Drawing.Point(7, 31);
-            this.xmlExportButton.Name = "xmlExportButton";
-            this.xmlExportButton.Size = new System.Drawing.Size(90, 23);
-            this.xmlExportButton.TabIndex = 0;
-            this.xmlExportButton.Text = "Экспорт в xml";
-            this.xmlExportButton.UseVisualStyleBackColor = true;
-            // 
-            // xmlImportButton
-            // 
-            this.xmlImportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xmlImportButton.Location = new System.Drawing.Point(103, 31);
-            this.xmlImportButton.Name = "xmlImportButton";
-            this.xmlImportButton.Size = new System.Drawing.Size(90, 23);
-            this.xmlImportButton.TabIndex = 1;
-            this.xmlImportButton.Text = "Импорт из xml";
-            this.xmlImportButton.UseVisualStyleBackColor = true;
-            // 
-            // csvExportButton
-            // 
-            this.csvExportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.csvExportButton.Location = new System.Drawing.Point(7, 60);
-            this.csvExportButton.Name = "csvExportButton";
-            this.csvExportButton.Size = new System.Drawing.Size(90, 23);
-            this.csvExportButton.TabIndex = 2;
-            this.csvExportButton.Text = "Экспорт в csv";
-            this.csvExportButton.UseVisualStyleBackColor = true;
             // 
             // csvImportButton
             // 
@@ -981,17 +820,167 @@
             this.csvImportButton.TabIndex = 3;
             this.csvImportButton.Text = "Импорт из csv";
             this.csvImportButton.UseVisualStyleBackColor = true;
+            this.csvImportButton.Click += new System.EventHandler(this.csvImportButton_Click);
             // 
-            // cancelSelectButton
+            // csvExportButton
             // 
-            this.cancelSelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cancelSelectButton.Location = new System.Drawing.Point(109, 148);
-            this.cancelSelectButton.Name = "cancelSelectButton";
-            this.cancelSelectButton.Size = new System.Drawing.Size(90, 38);
-            this.cancelSelectButton.TabIndex = 48;
-            this.cancelSelectButton.Text = "Отмена";
-            this.cancelSelectButton.UseVisualStyleBackColor = true;
-            this.cancelSelectButton.Click += new System.EventHandler(this.cancelSelectButton_Click);
+            this.csvExportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.csvExportButton.Location = new System.Drawing.Point(7, 60);
+            this.csvExportButton.Name = "csvExportButton";
+            this.csvExportButton.Size = new System.Drawing.Size(90, 23);
+            this.csvExportButton.TabIndex = 2;
+            this.csvExportButton.Text = "Экспорт в csv";
+            this.csvExportButton.UseVisualStyleBackColor = true;
+            this.csvExportButton.Click += new System.EventHandler(this.csvExportButton_Click);
+            // 
+            // xmlImportButton
+            // 
+            this.xmlImportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xmlImportButton.Location = new System.Drawing.Point(103, 31);
+            this.xmlImportButton.Name = "xmlImportButton";
+            this.xmlImportButton.Size = new System.Drawing.Size(90, 23);
+            this.xmlImportButton.TabIndex = 1;
+            this.xmlImportButton.Text = "Импорт из xml";
+            this.xmlImportButton.UseVisualStyleBackColor = true;
+            this.xmlImportButton.Click += new System.EventHandler(this.xmlImportButton_Click);
+            // 
+            // xmlExportButton
+            // 
+            this.xmlExportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xmlExportButton.Location = new System.Drawing.Point(7, 31);
+            this.xmlExportButton.Name = "xmlExportButton";
+            this.xmlExportButton.Size = new System.Drawing.Size(90, 23);
+            this.xmlExportButton.TabIndex = 0;
+            this.xmlExportButton.Text = "Экспорт в xml";
+            this.xmlExportButton.UseVisualStyleBackColor = true;
+            this.xmlExportButton.Click += new System.EventHandler(this.xmlExportButton_Click);
+            // 
+            // dataColumn21
+            // 
+            this.dataColumn21.ColumnName = "applyYear";
+            // 
+            // dataColumn20
+            // 
+            this.dataColumn20.ColumnName = "name";
+            // 
+            // dataColumn19
+            // 
+            this.dataColumn19.ColumnName = "empID";
+            // 
+            // dataColumn18
+            // 
+            this.dataColumn18.ColumnName = "animalName";
+            // 
+            // dataColumn17
+            // 
+            this.dataColumn17.ColumnName = "ID";
+            // 
+            // dataTable3
+            // 
+            this.dataTable3.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn17,
+            this.dataColumn18,
+            this.dataColumn19,
+            this.dataColumn20,
+            this.dataColumn21});
+            this.dataTable3.TableName = "FilterEmp";
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.ColumnName = "flyingAbilities";
+            // 
+            // dataColumn15
+            // 
+            this.dataColumn15.ColumnName = "avgLife";
+            // 
+            // dataColumn14
+            // 
+            this.dataColumn14.ColumnName = "redDate";
+            // 
+            // dataColumn13
+            // 
+            this.dataColumn13.ColumnName = "color";
+            // 
+            // dataColumn12
+            // 
+            this.dataColumn12.ColumnName = "maxWeight";
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.ColumnName = "animalType";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.ColumnName = "animalName";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "ID";
+            // 
+            // dataTable2
+            // 
+            this.dataTable2.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn9,
+            this.dataColumn10,
+            this.dataColumn11,
+            this.dataColumn12,
+            this.dataColumn13,
+            this.dataColumn14,
+            this.dataColumn15,
+            this.dataColumn16});
+            this.dataTable2.TableName = "Filter";
+            // 
+            // dataColumn8
+            // 
+            this.dataColumn8.Caption = "Летательные способности";
+            this.dataColumn8.ColumnName = "flyingAbilities";
+            // 
+            // dataColumn7
+            // 
+            this.dataColumn7.Caption = "Средняя продолжительность жизни";
+            this.dataColumn7.ColumnName = "avgLife";
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.Caption = "Дата занесения в Красную книгу";
+            this.dataColumn6.ColumnName = "redDate";
+            // 
+            // dataColumn5
+            // 
+            this.dataColumn5.Caption = "Цвет";
+            this.dataColumn5.ColumnName = "color";
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.Caption = "Максимальный вес";
+            this.dataColumn4.ColumnName = "maxWeight";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.Caption = "Класс";
+            this.dataColumn3.ColumnName = "animalType";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.Caption = "Название";
+            this.dataColumn2.ColumnName = "animalName";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "ID";
+            // 
+            // dataTable1
+            // 
+            this.dataTable1.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5,
+            this.dataColumn6,
+            this.dataColumn7,
+            this.dataColumn8});
+            this.dataTable1.TableName = "Table1";
             // 
             // Form1
             // 
@@ -1015,10 +1004,6 @@
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.relation1BindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1029,6 +1014,9 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1082,37 +1070,12 @@
         private System.Windows.Forms.Button updateRowButton;
         private System.Windows.Forms.Button deleteRowButton;
         private System.Windows.Forms.Button changeCurrentRowButton;
-        private System.Data.DataSet dataSet;
-        private System.Data.DataTable dataTable1;
-        private System.Data.DataColumn dataColumn1;
-        private System.Data.DataColumn dataColumn2;
-        private System.Data.DataColumn dataColumn3;
-        private System.Data.DataColumn dataColumn4;
-        private System.Data.DataColumn dataColumn5;
-        private System.Data.DataColumn dataColumn6;
-        private System.Data.DataColumn dataColumn7;
-        private System.Data.DataColumn dataColumn8;
         private System.Windows.Forms.BindingSource relation1BindingSource;
         private System.Windows.Forms.Button openEmpButton;
         private System.Windows.Forms.Button redDateFilter;
         private System.Windows.Forms.Button empCountFilter;
         private System.Windows.Forms.Button empSalaryFilter;
-        private System.Data.DataTable dataTable2;
-        private System.Data.DataColumn dataColumn9;
-        private System.Data.DataColumn dataColumn10;
-        private System.Data.DataColumn dataColumn11;
-        private System.Data.DataColumn dataColumn12;
-        private System.Data.DataColumn dataColumn13;
-        private System.Data.DataColumn dataColumn14;
-        private System.Data.DataColumn dataColumn15;
-        private System.Data.DataColumn dataColumn16;
         private System.Windows.Forms.Button cancelQueryFilterButton;
-        private System.Data.DataTable dataTable3;
-        private System.Data.DataColumn dataColumn17;
-        private System.Data.DataColumn dataColumn18;
-        private System.Data.DataColumn dataColumn19;
-        private System.Data.DataColumn dataColumn20;
-        private System.Data.DataColumn dataColumn21;
         private System.Windows.Forms.MaskedTextBox redDateTextBox;
         private System.Windows.Forms.TextBox selectAnimalTypeTextBox;
         private System.Windows.Forms.Label label11;
@@ -1131,6 +1094,30 @@
         private System.Windows.Forms.Button csvExportButton;
         private System.Windows.Forms.Button xmlImportButton;
         private System.Windows.Forms.Button cancelSelectButton;
+        private System.Data.DataColumn dataColumn21;
+        private System.Data.DataColumn dataColumn20;
+        private System.Data.DataColumn dataColumn19;
+        private System.Data.DataColumn dataColumn18;
+        private System.Data.DataColumn dataColumn17;
+        private System.Data.DataTable dataTable3;
+        private System.Data.DataColumn dataColumn16;
+        private System.Data.DataColumn dataColumn15;
+        private System.Data.DataColumn dataColumn14;
+        private System.Data.DataColumn dataColumn13;
+        private System.Data.DataColumn dataColumn12;
+        private System.Data.DataColumn dataColumn11;
+        private System.Data.DataColumn dataColumn10;
+        private System.Data.DataColumn dataColumn9;
+        private System.Data.DataTable dataTable2;
+        private System.Data.DataColumn dataColumn8;
+        private System.Data.DataColumn dataColumn7;
+        private System.Data.DataColumn dataColumn6;
+        private System.Data.DataColumn dataColumn5;
+        private System.Data.DataColumn dataColumn4;
+        private System.Data.DataColumn dataColumn3;
+        private System.Data.DataColumn dataColumn2;
+        private System.Data.DataColumn dataColumn1;
+        private System.Data.DataTable dataTable1;
     }
 }
 
