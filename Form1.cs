@@ -42,7 +42,7 @@ namespace Lab_1
                 dataAdapter.Fill(dataSet.Tables[0]);
             }
             dataGridView1.DataSource = bindingSource;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.Columns[0].ReadOnly = true;
@@ -132,17 +132,17 @@ namespace Lab_1
             using (connection = new MySqlConnection(connect))
             {
                 connection.Open();
-                mySqlCommand1 = new MySqlCommand(query, connection);
+                command = new MySqlCommand(query, connection);
 
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
 
-                mySqlCommand1.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
             dataAdapter.Fill(dataSet);
             dataSet.Clear();
@@ -154,6 +154,8 @@ namespace Lab_1
         {
             int k = dataGridView1.CurrentCell.RowIndex;
             string query = "delete from animals where ID = @ID";
+            string empQuery = "select ID_animal from employees where ID_animal = @ID_animal";
+            string empDeleteQuery = "delete from employees where ID_animal = @ID_animal";
 
             if (dataGridView1.RowCount == 0)
             {
@@ -165,12 +167,25 @@ namespace Lab_1
             {
                 using (connection = new MySqlConnection(connect))
                 {
-                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command = new MySqlCommand(query, connection);
                     command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(dataGridView1.Rows[k].Cells[0].Value)));
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    MySqlCommand empCommand = new MySqlCommand(empQuery, connection);
+                    empCommand.Parameters.Add(new MySqlParameter("@ID_animal", Convert.ToInt32(dataGridView1.Rows[k].Cells[0].Value)));
 
+                    connection.Open();
+
+                    MySqlDataReader reader = empCommand.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Close();
+                        MySqlCommand empDeleteCommand = new MySqlCommand(empDeleteQuery, connection);
+                        empDeleteCommand.Parameters.Add(new MySqlParameter("@ID_animal", Convert.ToInt32(dataGridView1.Rows[k].Cells[0].Value)));
+                        empDeleteCommand.ExecuteNonQuery();
+                    }
+                    reader.Close();
+
+                    command.ExecuteNonQuery();
                     dataAdapter.Fill(dataSet);
                     dataSet.Clear();
                     dataAdapter.Fill(dataSet.Tables[0]);
@@ -184,7 +199,8 @@ namespace Lab_1
             bindingSource.DataMember = "Table1";
             dataGridView1.DataSource = bindingSource;
 
-            string query = $"update animals set animalName = @animalName, " +
+            string query = $"update animals set " +
+                $"animalName = @animalName, " +
                 $"animalType = @animalType, " +
                 $"maxWeight = @maxWeight, " +
                 $"color = @color, " +
@@ -196,18 +212,20 @@ namespace Lab_1
             using (connection = new MySqlConnection(connect))
             {
                 connection.Open();
-                mySqlCommand1 = new MySqlCommand(query, connection);
+                command = new MySqlCommand(query, connection);
 
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
 
-                mySqlCommand1.ExecuteNonQuery();
+
+
+                command.ExecuteNonQuery();
                 dataAdapter.Fill(dataSet);
                 dataSet.Clear();
                 dataAdapter.Fill(dataSet.Tables[0]);
@@ -216,13 +234,30 @@ namespace Lab_1
 
         private void deleteRowButton_Click(object sender, EventArgs e)
         {
-            string query = $"delete from animals where ID = {Convert.ToInt32(idTextBox.Text)} ";
+            string query = "delete from animals where ID = @ID";
+            string empQuery = "select ID_animal from employees where ID_animal = @ID_animal";
+            string empDeleteQuery = "delete from employees where ID_animal = @ID_animal";
 
             using (connection = new MySqlConnection(connect))
             {
+                command = new MySqlCommand(query, connection);
+                command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
+
+                MySqlCommand empCommand = new MySqlCommand(empQuery, connection);
+                empCommand.Parameters.Add(new MySqlParameter("@ID_animal", Convert.ToInt32(idTextBox.Text)));
+
+                MySqlDataReader reader = empCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Close();
+                    MySqlCommand empDeleteCommand = new MySqlCommand(empDeleteQuery, connection);
+                    empDeleteCommand.Parameters.Add(new MySqlParameter("@ID_animal", Convert.ToInt32(idTextBox.Text)));
+                    empDeleteCommand.ExecuteNonQuery();
+                }
+                reader.Close();
+
                 connection.Open();
-                mySqlCommand1 = new MySqlCommand(query, connection);
-                mySqlCommand1.ExecuteNonQuery();
+                command.ExecuteNonQuery();
                 dataAdapter.Fill(dataSet);
                 dataSet.Clear();
                 dataAdapter.Fill(dataSet.Tables[0]);
@@ -231,10 +266,9 @@ namespace Lab_1
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            int k = 0;
-            try
+            if (dataGridView1.CurrentCell != null)
             {
-                k = dataGridView1.CurrentCell.RowIndex;
+                int k = dataGridView1.CurrentCell.RowIndex;
 
                 idTextBox.Text = dataGridView1.Rows[k].Cells[0].Value.ToString();
                 animalNameTextBox.Text = dataGridView1.Rows[k].Cells[1].Value.ToString();
@@ -244,10 +278,6 @@ namespace Lab_1
                 redDateTextBox.Text = dataGridView1.Rows[k].Cells[5].Value.ToString();
                 avgLifeTextBox.Text = dataGridView1.Rows[k].Cells[6].Value.ToString();
                 flyingAbilitiesTextBox.Text = dataGridView1.Rows[k].Cells[7].Value.ToString();
-            }
-            catch
-            {
-                return;
             }
         }
 
@@ -265,19 +295,19 @@ namespace Lab_1
             try
             {
                 connection = new MySqlConnection(connect);
-                mySqlCommand1 = new MySqlCommand(query, connection);
+                command = new MySqlCommand(query, connection);
 
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
-                mySqlCommand1.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@animalName", animalNameTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
+                command.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
 
                 connection.Open();
-                mySqlCommand1.ExecuteNonQuery();
+                command.ExecuteNonQuery();
                 connection.Close();
             }
             catch (FormatException)
@@ -287,7 +317,6 @@ namespace Lab_1
             }
             dataSet.Clear();
             dataAdapter.Fill(dataSet.Tables[0]);
-            //bindingSource1.ResetBindings(false);
         }
 
         private void idTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -301,7 +330,7 @@ namespace Lab_1
         {
             if (e.KeyChar == 13)
             {
-                this.searchButton_Click(sender, e);
+                searchButton_Click(sender, e);
             }
         }
 
@@ -309,7 +338,7 @@ namespace Lab_1
         {
             if (e.KeyChar == 13)
             {
-                this.filterButton_Click(sender, e);
+                filterButton_Click(sender, e);
             }
         }
 
@@ -349,6 +378,7 @@ namespace Lab_1
                 "inner join employees on animals.ID = employees.ID_animal " +
                 "where @year - employees.applyYear > 4";
             DataTable dataTable = new DataTable();
+
             using (connection = new MySqlConnection(connect))
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -383,6 +413,28 @@ namespace Lab_1
             bindingSource.DataSource = dataTable;
             dataGridView1.ReadOnly = true;
 
+        }
+
+        private void selectButton_Click(object sender, EventArgs e)
+        {
+            string query = "select * from animals where animalType = @animalType and redDate <= @redDate and avgLife <= @avgLife";
+
+            command = new MySqlCommand(query, connection);
+            command.Parameters.Add(new MySqlParameter("@animalType", selectAnimalTypeTextBox.Text));
+            command.Parameters.Add(new MySqlParameter("@redDate", selectRedDateTextBox.Text));
+            command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(selectAvgLifeTextBox.Text)));
+
+            dataAdapter = new MySqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+
+            dataGridView1.DataSource = dataTable;
+            dataGridView1.ReadOnly = true;
+        }
+
+        private void cancelSelectButton_Click(object sender, EventArgs e)
+        {
+            cancelFilterButton_Click(sender, e);
         }
     }
 }

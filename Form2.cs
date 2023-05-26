@@ -218,10 +218,9 @@ namespace Lab_1
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            int k = 0;
-            try
+            if (dataGridView1.CurrentCell != null)
             {
-                k = dataGridView1.CurrentCell.RowIndex;
+                int k = dataGridView1.CurrentCell.RowIndex;
 
                 idTextBox.Text = dataGridView1.Rows[k].Cells[0].Value.ToString();
                 idAnimalComboBox.Text = dataGridView1.Rows[k].Cells[1].Value.ToString();
@@ -231,17 +230,6 @@ namespace Lab_1
                 applyYearTextBox.Text = dataGridView1.Rows[k].Cells[5].Value.ToString();
                 salaryTextBox.Text = dataGridView1.Rows[k].Cells[6].Value.ToString();
             }
-            catch (IndexOutOfRangeException)
-            {
-                return;
-            }
-            catch (NullReferenceException)
-            {
-
-            }
-
-            if (dataGridView1.Rows[k].Cells[1].Value.ToString() != "") bindingNavigatorDeleteItem.Enabled = false;
-            else bindingNavigatorDeleteItem.Enabled = true;
         }
 
         private void exitButton_Click(object sender, EventArgs e)
