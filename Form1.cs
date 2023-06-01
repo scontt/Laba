@@ -547,54 +547,31 @@ namespace Lab_1
 
         private void csvImportButton_Click(object sender, EventArgs e)
         {
-            string str;
-            string[] row;
+            string delimiter = ",";
+            string tableName = "BooksTable";
+            string fileName = "../../animalsTable.csv";
 
-            string query = "DELETE FROM animals"; // удалить данные из таблицы
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("ID");
+            dataTable.Columns.Add("animalName");
+            dataTable.Columns.Add("animalType");
+            dataTable.Columns.Add("maxWeight");
+            dataTable.Columns.Add("color");
+            dataTable.Columns.Add("redDate");
+            dataTable.Columns.Add("avgLife");
+            dataTable.Columns.Add("flyingAbilities");
 
-            using (connection = new MySqlConnection(connect))
+            StreamReader sr = new StreamReader(fileName);
+
+            string allData = sr.ReadToEnd();
+            string[] rows = allData.Split("\r".ToCharArray());
+
+            foreach (string r in rows)
             {
-                connection.Open();
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery(); // выполнить запрос
+                string[] items = r.Split(delimiter.ToCharArray());
+                dataTable.Rows.Add(items);
             }
-
-            query = "insert into animals(ID, animalName, animalType, maxWeight, color, redDate, avgLife, flyingAbilities) " +
-                $"values(@ID, @animalName, @animalType, @maxWeight, @color, @redDate, @avgLife, @flyingAbilities)";
-            using (StreamReader sr = new StreamReader("../../animalsTable.csv", Encoding.GetEncoding("windows-1251")))
-            {
-                while (!sr.EndOfStream)
-                {
-                    str = sr.ReadLine(); // считать строку
-                    row = str.Split(new char[] { ',' }); // определить разделитель
-
-                    command = new MySqlCommand(query, connection);
-
-                    command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(row[0])));
-                    command.Parameters.Add(new MySqlParameter("@animalName", row[1]));
-                    command.Parameters.Add(new MySqlParameter("@animalType", row[2]));
-                    command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(row[3])));
-                    command.Parameters.Add(new MySqlParameter("@color", row[4]));
-                    command.Parameters.Add(new MySqlParameter("@redDate", row[5]));
-                    command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(row[6])));
-                    command.Parameters.Add(new MySqlParameter("@flyingAbilities", row[7]));
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        connection.Close();
-                        dataGridView1.DataSource = null;
-                        dataGridView1.Rows.Clear();
-                        dataSet.Clear();
-                        dataAdapter.Fill(dataSet.Tables[0]);
-                        dataGridView1.DataSource = dataSet.Tables[0];
-                        MessageBox.Show("CSV файл успешно импортирован", "Выполнено");
-                    }
-                    catch (Exception ex) { MessageBox.Show(ex.Message); connection.Close(); }
-                    finally { connection.Close(); }
-                }
-            }
+            dataGridView1.DataSource = dataTable.DefaultView;
         }
     }
 }
