@@ -408,7 +408,7 @@
             // insertButton
             // 
             this.insertButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.insertButton.Location = new System.Drawing.Point(9, 195);
+            this.insertButton.Location = new System.Drawing.Point(8, 198);
             this.insertButton.Name = "insertButton";
             this.insertButton.Size = new System.Drawing.Size(324, 30);
             this.insertButton.TabIndex = 16;

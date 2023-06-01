@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Mysqlx.Expect.Open.Types;
 
@@ -28,7 +29,9 @@ namespace Lab_1
         string password = "";
         string connect;
         string sql = "select * from animals";
+        string date = string.Empty;
         int index = 0;
+        StringBuilder sb = new StringBuilder();
         MySqlCommandBuilder builder;
         DataSet dataSet = new DataSet();
 
@@ -135,6 +138,18 @@ namespace Lab_1
             string query = "insert into animals(animalName, animalType, maxWeight, color, redDate, avgLife, flyingAbilities) " +
                 $"values(@animalName, @animalType, @maxWeight, @color, @redDate, @avgLife, @flyingAbilities)";
 
+            sb.Clear();
+            if (redDateTextBox.Text.Length == 10)
+            {
+                string yyyy = redDateTextBox.Text.Substring(6, 4);
+                string dd = redDateTextBox.Text.Substring(3, 2);
+                string mm = redDateTextBox.Text.Substring(0, 2);
+
+                sb.Append(yyyy + ".");
+                sb.Append(mm + ".");
+                sb.Append(dd);
+            }
+
             using (connection = new MySqlConnection(connect))
             {
                 connection.Open();
@@ -144,7 +159,7 @@ namespace Lab_1
                 command.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
                 command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
                 command.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
-                command.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", sb.ToString()));
                 command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
                 command.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
 
@@ -202,7 +217,6 @@ namespace Lab_1
         private void updateRowButton_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = dataSet.Tables[0];
-
             string query = $"update animals set " +
                 $"animalName = @animalName, " +
                 $"animalType = @animalType, " +
@@ -212,6 +226,18 @@ namespace Lab_1
                 $"avgLife = @avgLife, " +
                 $"flyingAbilities = @flyingAbilities " +
                 $"where ID = @ID";
+
+            sb.Clear();
+            if (redDateTextBox.Text.Length == 10)
+            {
+                string yyyy = redDateTextBox.Text.Substring(6, 4);
+                string dd = redDateTextBox.Text.Substring(3, 2);
+                string mm = redDateTextBox.Text.Substring(0, 2);
+
+                sb.Append(yyyy + ".");
+                sb.Append(mm + ".");
+                sb.Append(dd);
+            }
 
             using (connection = new MySqlConnection(connect))
             {
@@ -296,6 +322,18 @@ namespace Lab_1
                 $"flyingAbilities = @flyingAbilities " +
                 $"where ID = @ID";
 
+            sb.Clear();
+            if (redDateTextBox.Text.Length == 10)
+            {
+                string yyyy = redDateTextBox.Text.Substring(6, 4);
+                string dd = redDateTextBox.Text.Substring(3, 2);
+                string mm = redDateTextBox.Text.Substring(0, 2);
+
+                sb.Append(yyyy + ".");
+                sb.Append(mm + ".");
+                sb.Append(dd);
+            }
+
             try
             {
                 connection = new MySqlConnection(connect);
@@ -305,7 +343,7 @@ namespace Lab_1
                 command.Parameters.Add(new MySqlParameter("@animalType", animalTypeTextBox.Text));
                 command.Parameters.Add(new MySqlParameter("@maxWeight", Convert.ToInt32(maxWeightTextBox.Text)));
                 command.Parameters.Add(new MySqlParameter("@color", colorTextBox.Text));
-                command.Parameters.Add(new MySqlParameter("@redDate", redDateTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", sb.ToString()));
                 command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(avgLifeTextBox.Text)));
                 command.Parameters.Add(new MySqlParameter("@flyingAbilities", flyingAbilitiesTextBox.Text));
                 command.Parameters.Add(new MySqlParameter("@ID", Convert.ToInt32(idTextBox.Text)));
@@ -409,15 +447,6 @@ namespace Lab_1
                 "inner join employees on animals.ID = employees.ID_animal " +
                 "group by animals.animalType having salary > 24999";
 
-            //MySqlCommand cmd = new MySqlCommand(query, connection);
-            //DataTable dataTable = new DataTable();
-
-            //dataAdapter = new MySqlDataAdapter(cmd);
-            //dataAdapter.Fill(dataTable);
-
-            //bindingSource.DataSource = dataTable;
-            //dataGridView1.ReadOnly = true;
-
             if (dataSet.Tables.Contains("empSalaryFilter"))
             {
                 dataGridView1.DataSource = dataSet.Tables["empSalaryFilter"];
@@ -437,12 +466,35 @@ namespace Lab_1
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            string query = "select * from animals where animalType = @animalType and redDate <= @redDate and avgLife <= @avgLife";
+            string query;
 
-            command = new MySqlCommand(query, connection);
-            command.Parameters.Add(new MySqlParameter("@animalType", selectAnimalTypeTextBox.Text));
-            command.Parameters.Add(new MySqlParameter("@redDate", selectRedDateTextBox.Text));
-            command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(selectAvgLifeTextBox.Text)));
+            sb.Clear();
+            if (selectRedDateTextBox.Text.Length == 10)
+            {
+                string yyyy = redDateTextBox.Text.Substring(6, 4);
+                string dd = redDateTextBox.Text.Substring(3, 2);
+                string mm = redDateTextBox.Text.Substring(0, 2);
+
+                sb.Append(yyyy + ".");
+                sb.Append(mm + ".");
+                sb.Append(dd);
+            }
+
+            if (sb.Length != 0)
+            {
+                query = "select * from animals where animalType = @animalType and redDate <= @redDate and avgLife <= @avgLife";
+                command = new MySqlCommand(query, connection);
+                command.Parameters.Add(new MySqlParameter("@animalType", selectAnimalTypeTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@redDate", sb.ToString()));
+                command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(selectAvgLifeTextBox.Text)));
+            }
+            else
+            {
+                query = "select * from animals where animalType = @animalType and avgLife <= @avgLife";
+                command = new MySqlCommand(query, connection);
+                command.Parameters.Add(new MySqlParameter("@animalType", selectAnimalTypeTextBox.Text));
+                command.Parameters.Add(new MySqlParameter("@avgLife", Convert.ToInt32(selectAvgLifeTextBox.Text)));
+            }
 
             dataAdapter = new MySqlDataAdapter(command);
             DataTable dataTable = new DataTable();
@@ -476,18 +528,20 @@ namespace Lab_1
                 dataGridView1.Rows.Clear();
                 ds.ReadXml("../../animalsTable.xml");
                 dataGridView1.DataSource = ds.Tables[0];
+                MessageBox.Show("XML файл успешно импортирован", "Выполнено");
             }
         }
 
         private void csvExportButton_Click(object sender, EventArgs e)
         {
-            using (StreamWriter sr = new StreamWriter("../../animalsTable.csv", false, Encoding.GetEncoding(1251)))
+            using (StreamWriter sr = new StreamWriter("../../animalsTable.csv", false, Encoding.UTF8))
             {
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
                     sr.WriteLine(row[0].ToString() + "," + row[1].ToString() + "," + row[2].ToString() + "," + row[3].ToString() + "," + row[4].ToString() +
                          "," + row[5].ToString() + "," + row[6].ToString() + "," + row[7].ToString(), Encoding.GetEncoding(1251));
                 }
+                MessageBox.Show("CSV файл успешно сохранен", "Выполнено");
             }
         }
 
@@ -535,8 +589,10 @@ namespace Lab_1
                         dataSet.Clear();
                         dataAdapter.Fill(dataSet.Tables[0]);
                         dataGridView1.DataSource = dataSet.Tables[0];
+                        MessageBox.Show("CSV файл успешно импортирован", "Выполнено");
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); connection.Close(); }
+                    finally { connection.Close(); }
                 }
             }
         }
